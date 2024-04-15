@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  workspace:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    environment:
+      PYTHONPATH: /workspace
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_API_MODEL: ${OPENAI_API_MODEL}
+      OPENAI_API_TEMPERATURE: ${OPENAI_API_TEMPERATURE}
+      USE_OPENAI: ${USE_OPENAI}
+    volumes:
+      - ..:/workspace
+    command: sleep infinity
+    ports: #ポートの公開(streamlit用)
+      - '8501:8501'
