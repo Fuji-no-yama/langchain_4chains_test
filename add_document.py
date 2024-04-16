@@ -32,7 +32,7 @@ def setup_vectorDB(
 ) -> None:  # ファイル名を指定してその青空文庫ファイルをローカルのvectorDBに格納する関数(フォルダがない場合に一度だけ呼び出される)
     loader = TextLoader("/workspace/doc/" + filename)
     documents = loader.load()
-    text_splitter = CharacterTextSplitter(chunk_size=200, chunk_overlap=0)
+    text_splitter = CharacterTextSplitter(separator="。", chunk_size=400, chunk_overlap=0)
     docs = text_splitter.split_documents(documents)
     dummy_text, dummy_id = "1", 1
     embeddings = OpenAIEmbeddings()

@@ -5,7 +5,6 @@ import math
 import pandas as pd
 
 import langchain
-from langchain.memory import ConversationBufferMemory
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.prompts import PromptTemplate
 from langchain_core.documents.base import Document
@@ -240,14 +239,11 @@ def display_result(
 st.title("chain-test-app")
 
 st.markdown("**文書から取得するchunk数を指定してください**")
-top_k = st.slider(label="top-k", value=3, min_value=1, max_value=5)
-st.write(f"200文字*{top_k}chunkが文書から検索され取得されます")
+top_k = st.slider(label="top-k", value=5, min_value=1, max_value=10)
+st.write(f"400文字*{top_k}chunkが文書から検索され取得されます")
 
 if "vectorstore" not in st.session_state:  # vectorstoreを初期化
     st.session_state.vectorstore = initialize_vectorstore()
-
-if "memory" not in st.session_state:  # memoryを初期化
-    st.session_state.memory = ConversationBufferMemory(return_messages=True)
 
 if "chat_memory" not in st.session_state:  # 会話履歴表示用memory(list[dict])を初期化
     st.session_state.chat_memory = []

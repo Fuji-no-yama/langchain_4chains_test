@@ -1,0 +1,8 @@
+.DS_Store
+.env
+.pre-commit-config.yaml
+.pyproject.toml
+.vscode
+test.ipynb
+image
+article.md
